@@ -1,0 +1,45 @@
+services:
+  mongo1:
+    build: .
+    container_name: mongo1
+    ports:
+      - "27018:27017"
+    networks:
+      - mongoCluster
+    volumes:
+      - "mongo1_data:/data/db"
+      - "mongo1_config:/data/configdb"
+
+  mongo2:
+    build: .
+    container_name: mongo2
+    ports:
+      - "27019:27017"
+    networks:
+      - mongoCluster
+    volumes:
+      - "mongo2_data:/data/db"
+      - "mongo2_config:/data/configdb"
+
+  mongo3:
+    build: .
+    container_name: mongo3
+    ports:
+      - "27020:27017"
+    networks:
+      - mongoCluster
+    volumes:
+      - "mongo3_data:/data/db"
+      - "mongo3_config:/data/configdb"
+
+networks:
+  mongoCluster:
+    driver: bridge
+
+volumes:
+  mongo1_data:
+  mongo1_config:
+  mongo2_data:
+  mongo2_config:
+  mongo3_data:
+  mongo3_config:
